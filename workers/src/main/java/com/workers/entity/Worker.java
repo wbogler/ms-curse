@@ -1,6 +1,7 @@
 package com.workers.entity;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,16 +19,16 @@ public class Worker implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	private Double dailyIncome;
+	private Double daily_Income;
 	
 	public Worker() {
 		
 	}
 
-	public Worker(Long id, String name, Double dailyIncome) {
+	public Worker(Long id, String name, Double daily_Income) {
 		this.id = id;
 		this.name = name;
-		this.dailyIncome = dailyIncome;
+		this.daily_Income = daily_Income;
 	}
 
 	public Long getId() {
@@ -47,15 +48,32 @@ public class Worker implements Serializable {
 	}
 
 	public Double getDailyIncome() {
-		return dailyIncome;
+		return daily_Income;
 	}
 
-	public void setDailyIncome(Double dailyIncome) {
-		this.dailyIncome = dailyIncome;
+	public void setDailyIncome(Double daily_Income) {
+		this.daily_Income = daily_Income;
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Worker other = (Worker) obj;
+		return Objects.equals(id, other.id);
 	}
 	
 	
